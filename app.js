@@ -27,7 +27,7 @@ app.get('/random', async (req, res, next) =>{
     res.status(200).json(quote);
 });
 
-app.get('/theme/:word', async (req, res, next) =>{
+app.get('/search/:word', async (req, res, next) =>{
   const word = req.params.word.toString();
   const regex = new RegExp(word, 'i')
   const quotes = await Quote.find({ quote: {$regex: regex} }).select('-__v');
