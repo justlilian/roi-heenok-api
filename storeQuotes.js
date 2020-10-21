@@ -16,16 +16,16 @@ mongoose.connect(
   .catch(() => console.log('Connexion à MongoDB échouée 🔴'));
 
 //call the function :
-storeQuotes(1000, 100);
+storeQuotes(100);
 
   /**
-   * Send nbReq requests to get quotes and then store em.
+   * Send requests to get quotes and then store em.
    * 
-   * @param nbReq Number of requests
    * @param interval Time to wait between each
    */
-  async function storeQuotes( nbReq, interval ){
-    for(var i=0; i< nbReq; i++){
+  async function storeQuotes( interval ){
+    var errors = 0;
+    while(errors < 10){
       // Get a quote :
       const htmlDoc = await fetch('http://www.roi-heenok.com/index.php/gif-anime-roi-heenok--573.html')
         .then(res=>res.text())
@@ -34,9 +34,10 @@ storeQuotes(1000, 100);
 
       // Store it in the database :
       try{
-        await new Quote({ quote }).save();
+        await new Quote({ quote: quote.trim() }).save();
+        errors = 0;
       }catch(err){
-        console.error('ERREUR');
+        errors++;
       }
 
       // Wait the asked interval : 
