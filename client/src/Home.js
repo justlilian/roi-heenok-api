@@ -8,7 +8,7 @@ import './Home.css';
 
 const pretty = require('js-object-pretty-print').pretty;
 
-const API_DOMAIN = 'http://localhost:8080';
+const API_DOMAIN = 'https://api-roi-heenok.herokuapp.com';
 
 const Home = () => {
   const [response, setResponse] = useState('');
