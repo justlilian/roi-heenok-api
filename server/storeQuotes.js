@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const HTMLParser = require('node-html-parser');
 const fetch = require('node-fetch');
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const dotenv = require('dotenv').config({path: __dirname + '/../.env'});
 
 const Quote = require('./_models/quote');
 

@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv').config({path: __dirname + '/.env'});
+const dotenv = require('dotenv').config({path: __dirname + '/../.env'});
 const helmet = require('helmet');
 const morgan = require('morgan');
 const app = require('express')();
+const cors = require('cors');
 
 const Quote = require('./_models/quote');
 
@@ -18,13 +19,14 @@ mongoose.connect(
 
 app.use(morgan('tiny'));
 app.use(helmet());
+app.use(cors());
 
 app.get('/random', async (req, res, next) =>{
     const count = await Quote.countDocuments();
     const random = Math.floor(Math.random() * count);
     const quote = await Quote.findOne().skip(random).select('-__v');
 
-    res.status(200).json(quote);
+    res.status(200).json({quote: quote});
 });
 
 app.get('/search/:word', async (req, res, next) =>{
