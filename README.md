@@ -9,7 +9,7 @@ Operations
 
 ## Get a random quote
 
-  **PATH**`   GET /random`
+  **PATH**`   GET https://api-roi-heenok.herokuapp.com/random`
 
   **EXAMPLE**
 
@@ -22,9 +22,9 @@ Operations
 
 ## Search for quotes matching a query
 
-  **PATH**`   GET /search/:query`
+  **PATH**`   GET https://api-roi-heenok.herokuapp.com/search/:query`
 
-  **EXAMPLE**`   GET /search/sarko`
+  **EXAMPLE**`   GET https://api-roi-heenok.herokuapp.com/search/sarko`
 
 ```JSON
 {
