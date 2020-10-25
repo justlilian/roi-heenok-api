@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
+import {
+  Link
+} from 'react-router-dom'
+
 import './Home.css';
 
 const pretty = require('js-object-pretty-print').pretty;
@@ -10,8 +14,8 @@ const Home = () => {
   const [response, setResponse] = useState('');
 
   const getQuotes = async () => {
-    const res = await fetch(API_DOMAIN+'/random').then(res => res.json());
-    console.log(res.quote);
+    const res = await fetch(API_DOMAIN+'/random').then(res => res.json()).catch();
+
     setResponse(res.quote);
   }
 
@@ -22,6 +26,11 @@ const Home = () => {
 
   return(
     <div class='home'> 
+      <header class='header'>
+            <Link to='/' >
+              <img class='header__img no-select no-focus' width="300" alt="roi-heenok-api - free web archive for the bests things 'Roi Heenok' has ever said ..." src="/img/roi-heenok.png"/>
+            </Link>
+      </header>
       <h1 class='description__title'>Roi Heenok Api</h1>
       <section class='description'>
         This is a free JSON API and web archive for the bests
