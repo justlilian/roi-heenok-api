@@ -66,9 +66,15 @@
   border: 1px solid #ddd;
   font-size: 12px;
   margin: 1rem 0 1rem 0;
-  width: 40vw;
   overflow-x: auto;
+  width: 55vw;
   padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+}
+
+@media(min-width: 1000px){
+  .block__response{
+    width: 40vw;
+  }
 }
 
 .block__new{
