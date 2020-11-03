@@ -31,13 +31,13 @@ Operations
 ```JSON
 {
     "quotes": [
-        {
+        "quote": {
             "_id": "5f90752c94cfcea10b98adac",
-            "quote": "Faut se calmer là, faut se calmer avec cette merde, sinon j'vais voter...Sarkozy!"
+            "quote": "Faut se calmer là, faut se calmer avec cette m****, sinon j'vais voter...Sarkozy!"
         },
-        {
+        "quote": {
             "_id": "5f90753594cfcea10b98adc3",
-            "quote": "J'adore la France, j'adore la putain de France ! Vive Sarko !"
+            "quote": "J'adore la France, j'adore la p***** de France ! Vive Sarko !"
         }
     ]
 }
