@@ -26,7 +26,7 @@ app.get('/random', async (req, res, next) =>{
     const random = Math.floor(Math.random() * count);
     const quote = await Quote.findOne().skip(random).select('-__v');
 
-    res.status(200).json({quote: quote});
+    res.status(200).json({quote: {_id: quote.id, quote: censureQuote(quote.quote)}});
 });
 
 app.get('/search/:word', async (req, res, next) =>{
@@ -34,9 +34,46 @@ app.get('/search/:word', async (req, res, next) =>{
   const regex = new RegExp(word, 'i')
   const quotes = await Quote.find({ quote: {$regex: regex} }).select('-__v');
 
-  res.status(200).json({ quotes });
+  res.status(200).json({ quotes: censureAllQuotes(quotes) });
 })
 
 app.listen(process.env.PORT || 8080, ()=>{
   console.log('Listening on port 8080 ...');
 });
+
+/**
+ * Applique la censure des citations sur l'ensemble des résultats
+ * 
+ * @param {*} quotes
+ */
+function censureAllQuotes(quotes){
+  const res = [];
+
+  for(var i=0; i < quotes.length; i++){
+    res.push({quote: {_id: quotes[i].id, quote: censureQuote(quotes[i].quote)}})
+  }
+  return res;
+}
+
+/**
+ * Censure les citations choquantes du roi heenok
+ * 
+ * @param {*} quote 
+ */
+function censureQuote(quote){
+  const choquants = ['cul', 'nazi', 'négrito', 'putain', 'merde','négros', 'négro', 'pute', 'nègres', 'nègre'];
+  var res = quote;
+  choquants.forEach(mot=>{
+    res = res.replace(new RegExp(mot,'g'), censure(mot));
+  })
+  return res;
+}
+
+/**
+ * Censure les lettres d'un mot en laissant juste la première
+ * 
+ * @param {*} mot 
+ */
+function censure(mot){
+  return mot[0]+mot.substring(1).replace(/./g, '*');
+}
