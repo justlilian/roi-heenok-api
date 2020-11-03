@@ -61,7 +61,7 @@ function censureAllQuotes(quotes){
  * @param {*} quote 
  */
 function censureQuote(quote){
-  const choquants = ['cul', 'nazi', 'négrito', 'putain', 'merde','négros', 'négro', 'pute', 'nègres', 'nègre', 'arabes', 'baisez', 'baiser', 'chiennes'];
+  const choquants = ['cul', 'nazi', 'négrito', 'putain', 'Putain', 'merde','négros', 'négro', 'pute', 'nègres', 'nègre', 'arabes', 'baisez', 'baiser', 'chiennes'];
   var res = quote;
   choquants.forEach(mot=>{
     res = res.replace(new RegExp(mot,'g'), censure(mot));
